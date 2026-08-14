@@ -1,0 +1,50 @@
+﻿@{
+    ViewData["Title"] = "Products";
+}
+
+<div class="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+    <div class="overflow-hidden rounded-2xl border border-base-300 bg-base-100 shadow-sm">
+
+        <div class="flex items-center justify-between border-b border-base-300 px-6 py-5">
+            <div class="flex items-center gap-4">
+                <div class="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-primary text-primary-content shadow-sm">
+                    <i class="bi bi-book text-2xl"></i>
+                </div>
+
+                <div>
+                    <h1 class="text-2xl font-bold text-base-content">Products</h1>
+                    <p class="text-sm text-base-content/60">Manage your books and product catalog</p>
+                </div>
+            </div>
+
+            <a asp-action="Upsert" class="btn btn-primary gap-2 shadow-sm">
+                <i class="bi bi-plus-lg"></i>
+                New Product
+            </a>
+        </div>
+
+        <div class="px-6 py-5">
+            <div class="overflow-x-auto">
+                <table id="tblData" class="w-full">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>ISBN</th>
+                            <th>Price</th>
+                            <th>Author</th>
+                            <th>Category</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section Scripts {
+    <link rel="stylesheet" href="~/css/products.css" asp-append-version="true" />
+    <script src="~/js/products.js" asp-append-version="true"></script>
+}

@@ -1,0 +1,199 @@
+﻿@model RoleManagmentVM
+
+<div class="mx-auto w-full max-w-3xl px-4 py-6 sm:px-6 lg:px-8">
+
+    <div class="mb-5">
+        <a asp-action="Index"
+           class="inline-flex items-center gap-1.5 text-sm font-semibold text-base-content/60 transition hover:text-primary">
+            <i class="bi bi-arrow-left"></i>
+            Back to Users
+        </a>
+    </div>
+
+    <div class="overflow-hidden rounded-2xl border border-base-300 bg-base-100 shadow-sm">
+
+        <div class="border-b border-base-300 px-6 py-5">
+            <div class="flex items-center gap-4">
+                <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary text-primary-content">
+                    <i class="bi bi-shield-check text-xl"></i>
+                </div>
+
+                <div>
+                    <h1 class="text-xl font-bold text-base-content sm:text-2xl">
+                        Manage User Role
+                    </h1>
+                    <p class="mt-0.5 text-sm text-base-content/60">
+                        Assign the appropriate role and permissions
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-6">
+
+            <form method="post">
+
+                <input asp-for="ApplicationUser.Id" type="hidden" />
+
+                <div class="mb-6 rounded-xl border border-base-300 bg-base-200/40 p-4">
+
+                    <div class="mb-4 flex items-center gap-3">
+                        <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                            <i class="bi bi-person"></i>
+                        </div>
+
+                        <div>
+                            <p class="text-xs font-bold text-base-content">
+                                User Information
+                            </p>
+                            <p class="text-[10px] text-base-content/50">
+                                Account currently being modified
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+
+                        <div>
+                            <p class="mb-1 text-[10px] font-bold uppercase tracking-wider text-base-content/45">
+                                Full Name
+                            </p>
+                            <p class="text-sm font-semibold text-base-content">
+                                @Model.ApplicationUser.Name
+                            </p>
+                        </div>
+
+                        <div>
+                            <p class="mb-1 text-[10px] font-bold uppercase tracking-wider text-base-content/45">
+                                Email
+                            </p>
+                            <p class="truncate text-sm font-semibold text-base-content">
+                                @Model.ApplicationUser.Email
+                            </p>
+                        </div>
+
+                        <div>
+                            <p class="mb-1 text-[10px] font-bold uppercase tracking-wider text-base-content/45">
+                                Phone
+                            </p>
+                            <p class="text-sm text-base-content/70">
+                                @Model.ApplicationUser.PhoneNumber
+                            </p>
+                        </div>
+
+                        <div>
+                            <p class="mb-1 text-[10px] font-bold uppercase tracking-wider text-base-content/45">
+                                Current Role
+                            </p>
+
+                            <span class="user-role-display">
+                                <i class="bi bi-person-badge"></i>
+                                @Model.ApplicationUser.Role
+                            </span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="mb-6">
+
+                    <label asp-for="ApplicationUser.Role"
+                           class="mb-2 block text-sm font-semibold text-base-content">
+                        <i class="bi bi-person-badge me-1 text-primary"></i>
+                        Assign New Role
+                    </label>
+
+                    <select asp-for="ApplicationUser.Role"
+                            asp-items="@Model.RoleList"
+                            class="select select-bordered w-full bg-base-100 text-sm focus:border-primary focus:outline-none">
+                        <option disabled selected>
+                            -- Select Role --
+                        </option>
+                    </select>
+
+                    <p class="mt-2 text-[11px] text-base-content/50">
+                        Select the role this user should have.
+                    </p>
+
+                </div>
+
+                <div class="mb-6 rounded-xl border border-base-300 bg-base-200/40 p-4">
+
+                    <div class="mb-3 flex items-center gap-2">
+                        <i class="bi bi-info-circle text-primary"></i>
+
+                        <p class="text-xs font-bold text-base-content">
+                            Role Permissions
+                        </p>
+                    </div>
+
+                    <div class="space-y-2.5">
+
+                        <div class="flex items-start gap-2.5">
+                            <i class="bi bi-person text-primary"></i>
+                            <div>
+                                <p class="text-xs font-semibold text-base-content">
+                                    Customer
+                                </p>
+                                <p class="text-[11px] text-base-content/50">
+                                    Browse and purchase books.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-2.5">
+                            <i class="bi bi-person-badge text-primary"></i>
+                            <div>
+                                <p class="text-xs font-semibold text-base-content">
+                                    Employee
+                                </p>
+                                <p class="text-[11px] text-base-content/50">
+                                    Manage orders and inventory.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-2.5">
+                            <i class="bi bi-shield-check text-primary"></i>
+                            <div>
+                                <p class="text-xs font-semibold text-base-content">
+                                    Admin
+                                </p>
+                                <p class="text-[11px] text-base-content/50">
+                                    Full system and user management access.
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="flex flex-col gap-2 sm:flex-row sm:justify-end">
+
+                    <a asp-action="Index"
+                       class="btn btn-outline h-10 min-h-10 gap-2 font-semibold sm:w-auto">
+                        <i class="bi bi-x-circle"></i>
+                        Cancel
+                    </a>
+
+                    <button type="submit"
+                            class="btn btn-primary h-10 min-h-10 gap-2 font-bold shadow-sm sm:w-auto">
+                        <i class="bi bi-check-circle"></i>
+                        Update Role
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

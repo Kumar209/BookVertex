@@ -1,0 +1,66 @@
+﻿@using BookVertex.Utility
+
+<div class="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+
+    <div class="overflow-hidden rounded-2xl border border-base-300 bg-base-100 shadow-sm">
+
+        <div class="border-b border-base-300 px-6 py-5">
+            <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+
+                <div class="flex items-center gap-4">
+                    <div class="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-primary text-primary-content shadow-sm">
+                        <i class="bi bi-people text-2xl"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-bold text-base-content">
+                            Users
+                        </h1>
+                        <p class="text-sm text-base-content/60">
+                            Manage user accounts, roles, and access
+                        </p>
+                    </div>
+                </div>
+
+                @if (User.IsInRole(SD.RoleAdmin))
+                {
+                    <a asp-action="Register"
+                       asp-controller="Account"
+                       asp-area="Identity"
+                       class="btn btn-primary gap-2 shadow-sm">
+                        <i class="bi bi-person-plus"></i>
+                        Create User
+                    </a>
+                }
+
+            </div>
+        </div>
+
+        <div class="px-6 py-5">
+            <div class="overflow-x-auto">
+                <table id="tblData" class="w-full">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Role</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+@section Scripts {
+    <link rel="stylesheet"
+          href="~/css/users.css"
+          asp-append-version="true" />
+
+    <script src="~/js/users.js"
+            asp-append-version="true"></script>
+}

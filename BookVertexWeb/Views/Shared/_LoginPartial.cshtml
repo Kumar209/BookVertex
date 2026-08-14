@@ -1,0 +1,56 @@
+@using Microsoft.AspNetCore.Identity
+@using BookVertex.Models
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+    var currentUser = await UserManager.GetUserAsync(User);
+
+    <div class="hidden items-center gap-2 md:flex">
+        <a 
+           @*  asp-area="Identity"
+           asp-page="/Account/Manage/Index" *@
+           class="bv-nav-link"
+           title="Account">
+            <i class="bi bi-person-circle"></i>
+            @* <span>@UserManager.GetUserName(User)</span> *@
+            <span class="max-w-[150px] truncate">
+                @currentUser?.Name
+            </span>
+        </a>
+
+        <form id="logoutForm"
+              class="m-0"
+              asp-area="Identity"
+              asp-controller="Account" asp-action="Logout"
+              >
+            <button id="logout"
+                    type="submit"
+                    class="bv-nav-link cursor-pointer border-0 bg-transparent">
+                <i class="bi bi-box-arrow-right"></i>
+                <span>Logout</span>
+            </button>
+        </form>
+    </div>
+}
+else
+{
+    <div class="hidden items-center gap-1 md:flex">
+        <a id="register"
+           asp-area="Identity"
+           asp-controller="Account" 
+           asp-action="Register"
+           class="bv-nav-link">
+            Register
+        </a>
+
+        <a id="login"
+           asp-area="Identity"
+           asp-controller="Account"
+           asp-action="Login"
+           class="btn btn-primary btn-sm h-9 min-h-9 px-4 text-xs font-semibold shadow-sm shadow-primary/20">
+            Login
+        </a>
+    </div>
+}

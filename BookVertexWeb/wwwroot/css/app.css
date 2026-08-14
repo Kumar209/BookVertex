@@ -1,0 +1,54 @@
+﻿@import "tailwindcss";
+
+@source "../../Views";
+@source "../../Areas";
+@source "../../wwwroot/js";
+
+
+/* =========================================================
+   BOOKVERTEX CUSTOM THEME
+   ========================================================= */
+
+@plugin "daisyui/theme" {
+    name: "bookvertex";
+    default: true;
+    prefersdark: false;
+    color-scheme: light;
+    --color-base-100: oklch(98% 0.005 160);
+    --color-base-200: oklch(95% 0.008 160);
+    --color-base-300: oklch(90% 0.012 160);
+    --color-base-content: oklch(20% 0.02 160);
+    --color-primary: oklch(65% 0.18 155);
+    --color-primary-content: oklch(98% 0.01 155);
+    --color-secondary: oklch(50% 0.12 180);
+    --color-secondary-content: oklch(98% 0.01 180);
+    --color-accent: oklch(70% 0.16 150);
+    --color-accent-content: oklch(20% 0.03 150);
+    --color-neutral: oklch(20% 0.02 160);
+    --color-neutral-content: oklch(96% 0.01 160);
+    --color-info: oklch(65% 0.15 230);
+    --color-info-content: oklch(98% 0.01 230);
+    --color-success: oklch(65% 0.18 150);
+    --color-success-content: oklch(98% 0.01 150);
+    --color-warning: oklch(78% 0.17 85);
+    --color-warning-content: oklch(20% 0.03 85);
+    --color-error: oklch(62% 0.22 25);
+    --color-error-content: oklch(98% 0.01 25);
+    --radius-selector: 0.75rem;
+    --radius-field: 0.75rem;
+    --radius-box: 1rem;
+    --size-selector: 0.25rem;
+    --size-field: 0.25rem;
+    --border: 1px;
+    --depth: 1;
+    --noise: 0;
+}
+
+
+/* =========================================================
+   ENABLE DAISYUI THEMES
+   ========================================================= */
+
+@plugin "daisyui" {
+    themes: bookvertex, light, dark, emerald, corporate, cupcake, bumblebee, synthwave, retro, cyberpunk, valentine, halloween, garden, forest, aqua, lofi, pastel, fantasy, wireframe, black, luxury, dracula, business, acid, lemonade, night, coffee, winter, dim, nord, sunset, caramellatte, abyss, silk;
+}

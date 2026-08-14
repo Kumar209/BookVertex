@@ -1,0 +1,35 @@
+﻿@if (TempData["success"] != null || TempData["error"] != null)
+{
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+    <script>
+        toastr.options = {
+            closeButton: true,
+            progressBar: true,
+            newestOnTop: true,
+            positionClass: "toast-bottom-right",
+            preventDuplicates: true,
+            timeOut: 3500,
+            extendedTimeOut: 1000,
+            showDuration: 200,
+            hideDuration: 200,
+            showMethod: "fadeIn",
+            hideMethod: "fadeOut"
+        };
+
+        @if (TempData["success"] != null)
+        {
+            <text>
+                toastr.success('@TempData["success"]');
+            </text>
+        }
+
+        @if (TempData["error"] != null)
+        {
+            <text>
+                toastr.error('@TempData["error"]');
+            </text>
+        }
+    </script>
+}

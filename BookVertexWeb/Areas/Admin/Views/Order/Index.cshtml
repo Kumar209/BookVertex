@@ -1,0 +1,206 @@
+﻿@using BookVertex.Utility
+
+@{
+    var status = Context.Request.Query["status"].ToString().ToLower();
+
+    var inactive = "btn btn-sm btn-outline";
+    var active = "btn btn-sm btn-primary";
+
+    var pending = inactive;
+    var processing = inactive;
+    var shipped = inactive;
+    var approved = inactive;
+    var cancelled = inactive;
+    var all = inactive;
+
+    switch (status)
+    {
+        case "pending":
+            pending = active;
+            break;
+
+        case "processing":
+            processing = active;
+            break;
+
+        case "shipped":
+            shipped = active;
+            break;
+
+        case "approved":
+            approved = active;
+            break;
+
+        case "cancelled":
+            cancelled = active;
+            break;
+
+        default:
+            all = active;
+            break;
+    }
+
+    var isCustomer = User.IsInRole(SD.RoleCustomer);
+}
+
+<div class="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+
+    <div class="overflow-hidden rounded-2xl border border-base-300 bg-base-100 shadow-sm">
+
+        <!-- ================= HEADER ================= -->
+        <div class="border-b border-base-300 px-6 py-5">
+
+            <div class="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
+
+                <!-- Title -->
+                <div class="flex items-center gap-4">
+
+                    <div class="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-primary text-primary-content shadow-sm">
+                        <i class="bi bi-box-seam text-2xl"></i>
+                    </div>
+
+                    <div>
+                        <h1 class="text-2xl font-bold text-base-content">
+                            Orders
+                        </h1>
+
+                        <p class="text-sm text-base-content/60">
+                            Manage customer orders and order status
+                        </p>
+                    </div>
+
+                </div>
+
+                <!-- Order Count -->
+                <div class="hidden items-center gap-2 sm:flex">
+
+                    <span class="text-xs font-medium uppercase tracking-wider text-base-content/50">
+                        Orders
+                    </span>
+
+                    <span class="badge badge-primary badge-sm font-bold">
+                        <i class="bi bi-list-ul mr-1"></i>
+                        <span id="orderCount">0</span>
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= STATUS FILTERS ================= -->
+
+            <div class="mt-5 flex flex-wrap items-center gap-2">
+
+                <span class="mr-1 text-[10px] font-bold uppercase tracking-[0.18em] text-base-content/50">
+                    Filter
+                </span>
+
+                <a asp-controller="Order"
+                   asp-action="Index"
+                   asp-route-status="all"
+                   class="@all gap-1.5">
+
+                    <i class="bi bi-grid"></i>
+                    All
+
+                </a>
+
+                <a asp-controller="Order"
+                   asp-action="Index"
+                   asp-route-status="pending"
+                   class="@pending gap-1.5">
+
+                    <i class="bi bi-clock"></i>
+                    Pending
+
+                </a>
+
+                <a asp-controller="Order"
+                   asp-action="Index"
+                   asp-route-status="approved"
+                   class="@approved gap-1.5">
+
+                    <i class="bi bi-check-circle"></i>
+                    Approved
+
+                </a>
+
+                <a asp-controller="Order"
+                   asp-action="Index"
+                   asp-route-status="processing"
+                   class="@processing gap-1.5">
+
+                    <i class="bi bi-arrow-repeat"></i>
+                    Processing
+
+                </a>
+
+                <a asp-controller="Order"
+                   asp-action="Index"
+                   asp-route-status="shipped"
+                   class="@shipped gap-1.5">
+
+                    <i class="bi bi-truck"></i>
+                    Shipped
+
+                </a>
+
+                <a asp-controller="Order"
+                   asp-action="Index"
+                   asp-route-status="cancelled"
+                   class="@cancelled gap-1.5">
+
+                    <i class="bi bi-x-circle"></i>
+                    Cancelled
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= TABLE ================= -->
+
+        <div class="px-6 py-5">
+
+            <div class="overflow-x-auto">
+
+                <table id="tblData" class="w-full">
+
+                    <thead>
+                        <tr>
+                            <th>Order</th>
+                            <th>Customer</th>
+                            <th>Phone</th>
+                            <th>Email</th>
+                            <th>Status</th>
+                            <th>Total</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody></tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+@section Scripts {
+
+    <link rel="stylesheet"
+          href="~/css/orders.css"
+          asp-append-version="true" />
+
+    <script src="~/js/orders.js"
+            asp-append-version="true"></script>
+
+}

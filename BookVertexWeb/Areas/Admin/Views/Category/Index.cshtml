@@ -1,0 +1,257 @@
+﻿@using BookVertex.Models
+@model List<Category>
+
+<div class="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
+
+    <div class="overflow-hidden rounded-2xl border border-base-300 bg-base-100 shadow-sm">
+
+        <!-- Header -->
+        <div class="flex flex-col gap-4 border-b border-base-300
+            bg-base-100 p-5 sm:flex-row sm:items-center
+            sm:justify-between sm:p-6">
+
+            <div class="flex items-center gap-3">
+
+                <div class="flex h-11 w-11 shrink-0 items-center
+                    justify-center rounded-xl bg-primary
+                    text-primary-content shadow-sm">
+
+                    <i class="bi bi-grid-3x3-gap-fill text-lg"></i>
+
+                </div>
+
+                <div>
+                    <h1 class="text-lg font-bold tracking-tight sm:text-xl">
+                        Categories
+                    </h1>
+
+                    <p class="mt-0.5 text-xs text-base-content/60 sm:text-sm">
+                        Manage your book categories
+                    </p>
+                </div>
+
+            </div>
+
+            <a asp-controller="Category" asp-action="Create"
+               class="inline-flex min-h-10 items-center justify-center
+                gap-2 rounded-lg bg-primary px-4 py-2
+                text-sm font-semibold text-primary-content
+                shadow-sm transition-all duration-150
+                hover:-translate-y-0.5 hover:shadow-md
+                focus:outline-none focus:ring-2
+                focus:ring-primary focus:ring-offset-2">
+
+                <i class="bi bi-plus-lg"></i>
+
+                <span>New Category</span>
+
+            </a>
+
+        </div>
+
+        <!-- Content -->
+        <div class="p-4 sm:p-6">
+
+            <!-- Summary -->
+            <div class="mb-5 flex w-full max-w-xs items-center
+                justify-between rounded-xl border border-base-300
+                bg-base-200/60 px-4 py-3">
+
+                <div>
+                    <p class="text-xs font-medium text-base-content/60">
+                        Total Categories
+                    </p>
+
+                    <p class="mt-1 text-xl font-bold leading-none">
+                        @Model.Count
+                    </p>
+                </div>
+
+                <div class="flex h-9 w-9 items-center justify-center
+                    rounded-lg bg-primary/10 text-primary">
+
+                    <i class="bi bi-collection text-base"></i>
+
+                </div>
+
+            </div>
+
+            @if (Model.Count > 0)
+            {
+                <div class="overflow-x-auto rounded-xl border border-base-300">
+
+                    <table class="w-full min-w-[650px] text-left text-sm">
+
+                        <thead>
+                            <tr class="border-b border-base-300 bg-base-200/70">
+
+                                <th class="px-4 py-3 text-xs font-bold
+                                    uppercase tracking-wide
+                                    text-base-content/60 sm:px-5">
+                                    Category Name
+                                </th>
+
+                                <th class="px-4 py-3 text-xs font-bold
+                                    uppercase tracking-wide
+                                    text-base-content/60 sm:px-5">
+                                    Display Order
+                                </th>
+
+                                <th class="px-4 py-3 text-right text-xs
+                                    font-bold uppercase tracking-wide
+                                    text-base-content/60 sm:px-5">
+                                    Actions
+                                </th>
+
+                            </tr>
+                        </thead>
+
+                        <tbody class="divide-y divide-base-300">
+
+                            <!-- Sample Row - Students will replace with @@foreach loop -->
+                            @foreach (var obj in Model)
+                            {
+                                <tr class="transition-colors duration-150
+                                    hover:bg-primary/5">
+
+                                    <td class="px-4 py-3.5 sm:px-5">
+
+                                        <div class="flex items-center gap-3">
+
+                                            <div class="flex h-9 w-9 shrink-0
+                                                items-center justify-center
+                                                rounded-lg bg-primary/10
+                                                text-primary">
+
+                                                <i class="bi bi-book"></i>
+
+                                            </div>
+
+                                            <span class="font-semibold">
+                                                @obj.Name
+                                            </span>
+
+                                        </div>
+
+                                    </td>
+
+                                    <td class="px-4 py-3.5 sm:px-5">
+
+                                        <span class="inline-flex min-w-8
+                                            items-center justify-center
+                                            rounded-md border
+                                            border-base-300
+                                            bg-base-200 px-2 py-1
+                                            text-xs font-bold">
+
+                                            @obj.DisplayOrder
+
+                                        </span>
+
+                                    </td>
+
+                                    <td class="px-4 py-3.5 sm:px-5">
+
+                                        <div class="flex items-center
+                                            justify-end gap-2">
+
+                                            <a asp-action="Update"
+                                               asp-route-id="@obj.Id"
+                                               class="inline-flex h-8 items-center
+                                                justify-center gap-1.5
+                                                rounded-lg border
+                                                border-primary/30
+                                                bg-primary/5 px-3
+                                                text-xs font-semibold
+                                                text-primary
+                                                transition-colors
+                                                hover:bg-primary
+                                                hover:text-primary-content">
+
+                                                <i class="bi bi-pencil-square"></i>
+
+                                                <span class="hidden sm:inline">
+                                                    Edit
+                                                </span>
+
+                                            </a>
+
+                                            <a asp-action="Delete"
+                                               asp-route-id="@obj.Id"
+                                               class="inline-flex h-8 items-center
+                                                justify-center gap-1.5
+                                                rounded-lg border
+                                                border-error/30
+                                                bg-error/5 px-3
+                                                text-xs font-semibold
+                                                text-error
+                                                transition-colors
+                                                hover:bg-error
+                                                hover:text-error-content">
+
+                                                <i class="bi bi-trash3"></i>
+
+                                                <span class="hidden sm:inline">
+                                                    Delete
+                                                </span>
+
+                                            </a>
+
+                                        </div>
+
+                                    </td>
+
+                                </tr>
+                            }
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+            }
+            else
+            {
+                <div class="flex flex-col items-center justify-center
+                    rounded-xl border border-dashed border-base-300
+                    bg-base-200/30 px-5 py-14 text-center">
+
+                    <div class="mb-4 flex h-14 w-14 items-center
+                        justify-center rounded-2xl
+                        bg-primary/10 text-primary">
+
+                        <i class="bi bi-folder2-open text-2xl"></i>
+
+                    </div>
+
+                    <h2 class="text-base font-bold">
+                        No categories found
+                    </h2>
+
+                    <p class="mt-1 max-w-sm text-xs text-base-content/60 sm:text-sm">
+                        Create your first book category to get started.
+                    </p>
+
+                    <a asp-controller="Category"
+                       asp-action="Create"
+                       class="mt-5 inline-flex items-center
+                        justify-center gap-2 rounded-lg
+                        bg-primary px-4 py-2 text-sm
+                        font-semibold text-primary-content
+                        shadow-sm transition-all
+                        hover:-translate-y-0.5 hover:shadow-md">
+
+                        <i class="bi bi-plus-lg"></i>
+
+                        Create Category
+
+                    </a>
+
+                </div>
+            }
+
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,116 @@
+﻿@using BookVertex.Models
+@model Category
+
+<div class="mx-auto flex w-full max-w-5xl flex-1 flex-col px-4 py-6 sm:px-6 lg:py-10">
+
+    <a asp-action="Index"
+       class="mb-5 inline-flex w-fit items-center gap-1.5 text-sm font-medium text-base-content/60 transition-colors hover:text-primary">
+        <i class="bi bi-arrow-left"></i>
+        Back to categories
+    </a>
+
+    <div class="mx-auto w-full max-w-4xl overflow-hidden rounded-2xl border border-base-300 bg-base-100 shadow-sm">
+
+        <div class="border-b border-base-300 p-5 sm:p-6">
+
+            <div class="flex items-center gap-3">
+
+                <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary text-primary-content shadow-sm">
+                    <i class="bi bi-pencil-square text-lg"></i>
+                </div>
+
+                <div>
+                    <h1 class="text-lg font-bold tracking-tight sm:text-xl">
+                        Update Category
+                    </h1>
+
+                    <p class="mt-0.5 text-xs text-base-content/60 sm:text-sm">
+                        Update the details of your book category
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="p-5 sm:p-7">
+
+            <form method="post" asp-action="Update" class="space-y-6">
+
+                <input asp-for="Id" type="hidden" />
+
+                @* Displays server-side validation errors for the model. *@
+                <div asp-validation-summary="ModelOnly"
+                     class="rounded-lg border border-error/20 bg-error/5 px-4 py-3 text-sm text-error">
+                </div>
+
+                <div class="grid gap-5 sm:grid-cols-2">
+
+                    <div>
+                        <label asp-for="Name"
+                               class="mb-2 block text-sm font-semibold">
+                            Category Name
+                        </label>
+
+                        <input type="text"
+                               asp-for="Name"
+                               class="input w-full border-base-300 bg-base-100 shadow-none outline-none transition-all duration-150 focus:border-primary focus:outline-none focus:ring-0 focus:shadow-[0_0_0_2px_color-mix(in_srgb,var(--color-primary)_18%,transparent)]"
+                               placeholder="Enter category name" />
+
+                        <span asp-validation-for="Name"
+                              class="mt-1.5 block text-xs text-error">
+                        </span>
+                    </div>
+
+                    <div>
+                        <label asp-for="DisplayOrder"
+                               class="mb-2 block text-sm font-semibold">
+                            Display Order
+                        </label>
+
+                        <input type="number"
+                               asp-for="DisplayOrder"
+                               class="input w-full border-base-300 bg-base-100 shadow-none outline-none transition-all duration-150 focus:border-primary focus:outline-none focus:ring-0 focus:shadow-[0_0_0_2px_color-mix(in_srgb,var(--color-primary)_18%,transparent)]"
+                               placeholder="Enter display order" />
+
+                        <span asp-validation-for="DisplayOrder"
+                              class="mt-1.5 block text-xs text-error">
+                        </span>
+                    </div>
+
+                </div>
+
+                <div class="border-t border-base-300 pt-5">
+
+                    <div class="flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
+
+                        <a asp-controller="Category"
+                           asp-action="Index"
+                           class="btn border-base-300 bg-base-100 px-5 font-medium shadow-none hover:border-base-content/20 hover:bg-base-200">
+                            Cancel
+                        </a>
+
+                        <button type="submit"
+                                class="btn btn-primary gap-2 px-5 font-semibold shadow-sm transition-all duration-150 hover:-translate-y-0.5 hover:shadow-md">
+
+                            <i class="bi bi-check-lg"></i>
+                            Update Category
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+@section Scripts {
+    @* Enables client-side validation before submitting the form. *@
+    <partial name="_ValidationScriptsPartial" />
+}

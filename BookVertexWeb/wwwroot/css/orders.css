@@ -1,0 +1,432 @@
+﻿/* =========================================================
+   ORDERS TABLE
+   ========================================================= */
+
+#tblData_wrapper .dt-search {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 24px;
+}
+
+    #tblData_wrapper .dt-search label {
+        display: none;
+    }
+
+    #tblData_wrapper .dt-search input {
+        width: 430px;
+        height: 44px;
+        margin: 0 !important;
+        padding: 0 16px;
+        border: 1px solid color-mix( in srgb, var(--color-base-content) 18%, transparent );
+        border-radius: 12px;
+        background: var(--color-base-100);
+        color: var(--color-base-content);
+        font-size: 0.9rem;
+        outline: none;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+        #tblData_wrapper .dt-search input::placeholder {
+            color: color-mix( in srgb, var(--color-base-content) 50%, transparent );
+        }
+
+        #tblData_wrapper .dt-search input:focus {
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px color-mix( in srgb, var(--color-primary) 12%, transparent );
+        }
+
+
+/* =========================================================
+   TABLE
+   ========================================================= */
+
+#tblData {
+    width: 100% !important;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+    #tblData thead th {
+        padding: 0 14px 14px;
+        border-bottom: 1px solid color-mix( in srgb, var(--color-base-content) 18%, transparent );
+        color: var(--color-base-content);
+        font-size: 0.85rem;
+        font-weight: 700;
+        text-align: left;
+        white-space: nowrap;
+        cursor: pointer;
+    }
+
+        #tblData thead th:last-child,
+        #tblData tbody td:last-child {
+            text-align: right;
+        }
+
+
+    #tblData tbody td {
+        padding: 16px 14px;
+        border-bottom: 1px solid color-mix( in srgb, var(--color-base-content) 9%, transparent );
+        color: var(--color-base-content);
+        font-size: 0.9rem;
+        line-height: 1.4;
+        vertical-align: middle;
+    }
+
+
+    #tblData tbody tr {
+        transition: background-color 0.15s ease;
+    }
+
+        #tblData tbody tr:hover {
+            background: color-mix( in srgb, var(--color-base-content) 3%, transparent );
+        }
+
+        #tblData tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+
+    /* =========================================================
+   ORDER NUMBER
+   ========================================================= */
+
+    #tblData .order-number {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    #tblData .order-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 38px;
+        height: 38px;
+        flex-shrink: 0;
+        border-radius: 10px;
+        background: color-mix( in srgb, var(--color-primary) 10%, transparent );
+        color: var(--color-primary);
+        font-size: 0.9rem;
+    }
+
+    #tblData .order-label {
+        display: block;
+        margin-bottom: 2px;
+        color: color-mix( in srgb, var(--color-base-content) 45%, transparent );
+        font-size: 0.65rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+    }
+
+    #tblData .order-id {
+        display: block;
+        color: var(--color-base-content);
+        font-size: 0.9rem;
+        font-weight: 700;
+    }
+
+
+    /* =========================================================
+   CUSTOMER
+   ========================================================= */
+
+    #tblData .order-customer {
+        font-weight: 600;
+        white-space: nowrap;
+    }
+
+
+    /* =========================================================
+   PHONE
+   ========================================================= */
+
+    #tblData .order-phone {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        color: color-mix( in srgb, var(--color-base-content) 70%, transparent );
+        white-space: nowrap;
+    }
+
+        #tblData .order-phone i {
+            color: color-mix( in srgb, var(--color-primary) 65%, transparent );
+        }
+
+
+    /* =========================================================
+   EMAIL
+   ========================================================= */
+
+    #tblData .order-email {
+        display: inline-block;
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        color: color-mix( in srgb, var(--color-base-content) 70%, transparent );
+    }
+
+    #tblData .order-muted {
+        color: color-mix( in srgb, var(--color-base-content) 35%, transparent );
+    }
+
+
+    /* =========================================================
+   STATUS
+   ========================================================= */
+
+    #tblData .order-status {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 11px;
+        border-radius: 999px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        white-space: nowrap;
+    }
+
+    #tblData .order-status-pending {
+        background: color-mix( in srgb, #f59e0b 10%, transparent );
+        color: #d97706;
+    }
+
+    #tblData .order-status-approved {
+        background: color-mix( in srgb, #10b981 10%, transparent );
+        color: #059669;
+    }
+
+    #tblData .order-status-processing {
+        background: color-mix( in srgb, #f59e0b 10%, transparent );
+        color: #b45309;
+    }
+
+    #tblData .order-status-shipped {
+        background: color-mix( in srgb, #3b82f6 10%, transparent );
+        color: #2563eb;
+    }
+
+    #tblData .order-status-cancelled {
+        background: color-mix( in srgb, #ef4444 10%, transparent );
+        color: #dc2626;
+    }
+
+    #tblData .order-status-refunded {
+        background: color-mix( in srgb, #ec4899 10%, transparent );
+        color: #db2777;
+    }
+
+    #tblData .order-status-default {
+        background: color-mix( in srgb, var(--color-base-content) 8%, transparent );
+        color: color-mix( in srgb, var(--color-base-content) 70%, transparent );
+    }
+
+
+    /* =========================================================
+   TOTAL
+   ========================================================= */
+
+    #tblData .order-total {
+        font-weight: 700;
+        white-space: nowrap;
+    }
+
+
+    /* =========================================================
+   ACTIONS
+   ========================================================= */
+
+    #tblData .order-actions {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+    }
+
+    #tblData .order-action {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        height: 36px;
+        padding: 0 13px;
+        gap: 7px;
+        border-radius: 9px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        white-space: nowrap;
+    }
+
+
+/* =========================================================
+   DATATABLE FOOTER
+   ========================================================= */
+
+#tblData_wrapper .orders-footer {
+    position: relative;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 52px;
+    margin-top: 20px;
+}
+
+
+    /* INFO */
+
+    #tblData_wrapper .orders-footer .dt-info {
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        margin: 0;
+        padding: 0;
+        color: color-mix( in srgb, var(--color-base-content) 65%, transparent );
+        font-size: 0.85rem;
+        line-height: 1;
+        white-space: nowrap;
+    }
+
+
+    /* PAGINATION */
+
+    #tblData_wrapper .orders-footer .dt-paging {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+    }
+
+    #tblData_wrapper .orders-footer .dt-paging-button {
+        display: inline-flex !important;
+        align-items: center;
+        justify-content: center;
+        min-width: 38px;
+        height: 38px;
+        margin: 0 2px !important;
+        padding: 0 10px !important;
+        border: 1px solid color-mix( in srgb, var(--color-base-content) 10%, transparent ) !important;
+        border-radius: 10px !important;
+        background: transparent !important;
+        color: var(--color-base-content) !important;
+        transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    }
+
+        #tblData_wrapper .orders-footer .dt-paging-button:hover {
+            border-color: var(--color-primary) !important;
+            background: color-mix( in srgb, var(--color-primary) 8%, transparent ) !important;
+            color: var(--color-primary) !important;
+        }
+
+        #tblData_wrapper .orders-footer .dt-paging-button.current {
+            border-color: var(--color-primary) !important;
+            background: var(--color-primary) !important;
+            color: var(--color-primary-content) !important;
+        }
+
+        #tblData_wrapper .orders-footer .dt-paging-button.disabled {
+            opacity: 0.35;
+            cursor: not-allowed;
+        }
+
+
+    /* PAGE LENGTH */
+
+    #tblData_wrapper .orders-footer .dt-length {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin: 0;
+        padding: 0;
+        line-height: 1;
+        white-space: nowrap;
+    }
+
+        #tblData_wrapper .orders-footer .dt-length select {
+            min-width: 78px;
+            height: 40px;
+            padding: 0 28px 0 12px;
+            border: 1px solid color-mix( in srgb, var(--color-base-content) 18%, transparent );
+            border-radius: 10px;
+            background: var(--color-base-100);
+            color: var(--color-base-content);
+            outline: none;
+            cursor: pointer;
+        }
+
+            #tblData_wrapper .orders-footer .dt-length select:focus {
+                border-color: var(--color-primary);
+                box-shadow: 0 0 0 3px color-mix( in srgb, var(--color-primary) 10%, transparent );
+            }
+
+
+/* =========================================================
+   PROCESSING
+   ========================================================= */
+
+#tblData_wrapper .dt-processing {
+    border-radius: 10px;
+    background: var(--color-base-100);
+    color: var(--color-base-content);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    #tblData_wrapper .dt-search {
+        justify-content: stretch;
+    }
+
+        #tblData_wrapper .dt-search input {
+            width: 100%;
+        }
+
+    #tblData_wrapper .orders-footer {
+        display: flex !important;
+        flex-direction: column;
+        justify-content: center;
+        gap: 14px;
+        min-height: auto;
+        padding-top: 8px;
+    }
+
+        #tblData_wrapper .orders-footer .dt-info {
+            position: static;
+            transform: none;
+            order: 1;
+            text-align: center;
+        }
+
+        #tblData_wrapper .orders-footer .dt-paging {
+            order: 2;
+        }
+
+        #tblData_wrapper .orders-footer .dt-length {
+            position: static;
+            transform: none;
+            order: 3;
+            justify-content: center;
+        }
+
+    #tblData tbody td {
+        padding: 12px 10px;
+    }
+
+    #tblData thead th {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    #tblData .order-action {
+        padding: 0 10px;
+    }
+}

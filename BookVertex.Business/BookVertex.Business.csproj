@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CloudinaryDotNet" Version="1.29.2" />
+    <PackageReference Include="Mailjet.Api" Version="4.0.1" />
+    <PackageReference Include="Stripe.net" Version="52.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BookVertex.DataAccess\BookVertex.DataAccess.csproj" />
+    <ProjectReference Include="..\BookVertex.Models\BookVertex.Models.csproj" />
+    <ProjectReference Include="..\BookVertex.Utility\BookVertex.Utility.csproj" />
+  </ItemGroup>
+
+</Project>

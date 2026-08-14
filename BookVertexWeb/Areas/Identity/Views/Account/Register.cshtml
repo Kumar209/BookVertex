@@ -1,0 +1,216 @@
+﻿@using BookVertex.Utility
+@model RegisterVM
+
+<div class="min-h-[calc(100vh-68px)] overflow-x-hidden bg-base-200 px-3 py-5 sm:px-6 sm:py-6 lg:px-8">
+    <div class="mx-auto w-full max-w-4xl">
+
+        <div class="mb-5 overflow-hidden rounded-2xl border border-base-300 bg-base-100 shadow-sm">
+            <div class="grid items-center gap-4 px-4 py-4 sm:px-5 sm:py-4 lg:grid-cols-[1fr_auto] lg:gap-8">
+                <div class="flex min-w-0 items-center gap-3">
+                    <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                        <i class="bi bi-book-half text-lg"></i>
+                    </div>
+
+                    <div class="min-w-0">
+                        <p class="text-[10px] font-bold uppercase tracking-[0.2em] text-primary">
+                            Welcome to BookVertex
+                        </p>
+                        <h1 class="mt-1 font-serif text-xl font-bold leading-tight tracking-tight text-base-content sm:text-2xl">
+                            Your next chapter starts here.
+                        </h1>
+                        <p class="mt-1 text-xs text-base-content/55 sm:text-sm">
+                            Create your account and start exploring our collection.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="hidden items-center justify-end gap-6 lg:flex">
+                    <span class="inline-flex items-center gap-2 whitespace-nowrap text-xs font-medium text-base-content/60">
+                        <i class="bi bi-book text-primary"></i>
+                        Curated books
+                    </span>
+                    <span class="inline-flex items-center gap-2 whitespace-nowrap text-xs font-medium text-base-content/60">
+                        <i class="bi bi-cart3 text-primary"></i>
+                        Easy shopping
+                    </span>
+                    <span class="inline-flex items-center gap-2 whitespace-nowrap text-xs font-medium text-base-content/60">
+                        <i class="bi bi-shield-check text-primary"></i>
+                        Secure
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="w-full overflow-hidden rounded-2xl border border-base-300 bg-base-100 shadow-sm">
+            <div class="border-b border-base-300 px-4 py-5 sm:px-7 sm:py-6">
+                <div class="flex items-start justify-between gap-4">
+                    <div>
+                        <p class="text-[10px] font-bold uppercase tracking-[0.2em] text-primary sm:text-[11px]">
+                            Join BookVertex
+                        </p>
+                        <h2 class="mt-1 font-serif text-2xl font-bold leading-tight tracking-tight text-base-content sm:text-3xl">
+                            Create your account
+                        </h2>
+                        <p class="mt-2 text-sm text-base-content/55">
+                            Fill in your details below to get started.
+                        </p>
+                    </div>
+
+                    <div class="hidden h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary sm:flex">
+                        <i class="bi bi-person-plus-fill text-lg"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="px-4 py-6 sm:px-7 sm:py-7">
+                <form method="post" asp-route-returnUrl="@ViewData["ReturnUrl"]">
+
+                    <div asp-validation-summary="ModelOnly" class="alert alert-error mb-6 py-3 text-sm"></div>
+
+                    <div class="grid grid-cols-1 gap-[20px] sm:grid-cols-2">
+
+                        <div class="min-w-0 flex flex-col gap-2">
+                            <label asp-for="Name" class="block text-sm font-semibold text-base-content"></label>
+                            <input asp-for="Name" class="input input-bordered w-full border-base-300 bg-base-100 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/10" placeholder="John Doe" />
+                            <span asp-validation-for="Name" class="block text-xs text-error"></span>
+                        </div>
+
+                        <div class="min-w-0 flex flex-col gap-2">
+                            <label asp-for="Email" class="block text-sm font-semibold text-base-content"></label>
+                            <input asp-for="Email" class="input input-bordered w-full border-base-300 bg-base-100 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/10" placeholder="name@example.com" />
+                            <span asp-validation-for="Email" class="block text-xs text-error"></span>
+                        </div>
+
+                        <div class="min-w-0 flex flex-col gap-2">
+                            <label asp-for="Password" class="block text-sm font-semibold text-base-content"></label>
+                            <div class="relative">
+                                <input asp-for="Password"
+                                       type="password"
+                                       id="password"
+                                       class="input input-bordered w-full border-base-300 bg-base-100 pr-11 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/10"
+                                       placeholder="••••••••" />
+                                <button type="button"
+                                        onclick="togglePassword('password', 'passwordIcon')"
+                                        class="absolute right-3 top-1/2 -translate-y-1/2 text-base-content/45 transition hover:text-primary"
+                                        aria-label="Show password">
+                                    <i id="passwordIcon" class="bi bi-eye"></i>
+                                </button>
+                            </div>
+                            <span asp-validation-for="Password" class="block text-xs text-error"></span>
+                        </div>
+
+                        <div class="min-w-0 flex flex-col gap-2">
+                            <label asp-for="ConfirmPassword" class="block text-sm font-semibold text-base-content"></label>
+                            <div class="relative">
+                                <input asp-for="ConfirmPassword"
+                                       type="password"
+                                       id="confirmPassword"
+                                       class="input input-bordered w-full border-base-300 bg-base-100 pr-11 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/10"
+                                       placeholder="••••••••" />
+                                <button type="button"
+                                        onclick="togglePassword('confirmPassword', 'confirmPasswordIcon')"
+                                        class="absolute right-3 top-1/2 -translate-y-1/2 text-base-content/45 transition hover:text-primary"
+                                        aria-label="Show password">
+                                    <i id="confirmPasswordIcon" class="bi bi-eye"></i>
+                                </button>
+                            </div>
+                            <span asp-validation-for="ConfirmPassword" class="block text-xs text-error"></span>
+                        </div>
+
+                        <div class="min-w-0 flex flex-col gap-2 sm:col-span-2">
+                            <label asp-for="PhoneNumber" class="block text-sm font-semibold text-base-content"></label>
+                            <input asp-for="PhoneNumber" type="text" class="input input-bordered w-full border-base-300 bg-base-100 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/10" placeholder="(123) 456-7890" />
+                            <span asp-validation-for="PhoneNumber" class="block text-xs text-error"></span>
+                        </div>
+
+                        <div class="min-w-0 flex flex-col gap-2 sm:col-span-2">
+                            <label asp-for="StreetAddress" class="block text-sm font-semibold text-base-content"></label>
+                            <input asp-for="StreetAddress" type="text" class="input input-bordered w-full border-base-300 bg-base-100 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/10" placeholder="123 Main St" />
+                            <span asp-validation-for="StreetAddress" class="block text-xs text-error"></span>
+                        </div>
+
+                        <div class="sm:col-span-2">
+                            <div class="grid grid-cols-1 gap-[20px] sm:grid-cols-5">
+
+                                <div class="min-w-0 flex flex-col gap-2 sm:col-span-2">
+                                    <label asp-for="City" class="block text-sm font-semibold text-base-content"></label>
+                                    <input asp-for="City" type="text" class="input input-bordered w-full border-base-300 bg-base-100 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/10" placeholder="New York" />
+                                    <span asp-validation-for="City" class="block text-xs text-error"></span>
+                                </div>
+
+                                <div class="min-w-0 flex flex-col gap-2 sm:col-span-1">
+                                    <label asp-for="State" class="block text-sm font-semibold text-base-content"></label>
+                                    <input asp-for="State" type="text" class="input input-bordered w-full border-base-300 bg-base-100 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/10" placeholder="NY" />
+                                    <span asp-validation-for="State" class="block text-xs text-error"></span>
+                                </div>
+
+                                <div class="min-w-0 flex flex-col gap-2 sm:col-span-2">
+                                    <label asp-for="PostalCode" class="block text-sm font-semibold text-base-content"></label>
+                                    <input asp-for="PostalCode" type="text" class="input input-bordered w-full border-base-300 bg-base-100 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/10" placeholder="10001" />
+                                    <span asp-validation-for="PostalCode" class="block text-xs text-error"></span>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        @if (User.IsInRole(SD.RoleAdmin))
+                        {
+                            <div class="min-w-0 flex flex-col gap-2 sm:col-span-2">
+                                <label asp-for="Role" class="block text-sm font-semibold text-base-content"></label>
+                                <select asp-for="Role" asp-items="@Model.RoleList" class="select select-bordered w-full border-base-300 bg-base-100 focus:border-primary focus:outline-none focus:ring-0">
+                                    <option disabled selected>- Select Role -</option>
+                                </select>
+                            </div>
+                        }
+
+                    </div>
+
+                    <div class="mt-7">
+                        <button type="submit" class="btn btn-primary h-11 min-h-11 w-full gap-2 font-semibold shadow-md shadow-primary/20 transition hover:-translate-y-0.5">
+                            <i class="bi bi-person-check"></i>
+                            Create Account
+                        </button>
+                    </div>
+
+                </form>
+
+                <div class="my-5 flex items-center gap-3">
+                    <div class="h-px flex-1 bg-base-300"></div>
+                    <span class="whitespace-nowrap text-[10px] font-semibold uppercase tracking-wider text-base-content/35">
+                        Already registered?
+                    </span>
+                    <div class="h-px flex-1 bg-base-300"></div>
+                </div>
+
+                <div class="text-center">
+                    <a asp-action="Login" asp-route-returnUrl="@ViewData["ReturnUrl"]" class="inline-flex items-center gap-1.5 text-sm font-bold text-primary transition hover:opacity-70">
+                        Log in to your account
+                        <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+
+    <script>
+        function togglePassword(inputId, iconId) {
+            const input = document.getElementById(inputId);
+            const icon = document.getElementById(iconId);
+
+            if (input.type === "password") {
+                input.type = "text";
+                icon.classList.remove("bi-eye");
+                icon.classList.add("bi-eye-slash");
+            } else {
+                input.type = "password";
+                icon.classList.remove("bi-eye-slash");
+                icon.classList.add("bi-eye");
+            }
+        }
+    </script>
+}

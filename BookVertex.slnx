@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="BookVertex.Business/BookVertex.Business.csproj" Id="6373cc4a-ec8c-449b-94f7-d478e36c56ff" />
+  <Project Path="BookVertex.DataAccess/BookVertex.DataAccess.csproj" Id="1d40df01-b0d5-4299-812b-903e10069ad8" />
+  <Project Path="BookVertex.Models/BookVertex.Models.csproj" Id="e6c9e325-1f4b-48be-9c85-d251a6e4ad47" />
+  <Project Path="BookVertex.Utility/BookVertex.Utility.csproj" Id="13d2a029-1f08-4e36-9786-538c3f162f97" />
+  <Project Path="BookVertexWeb/BookVertexWeb.csproj" />
+</Solution>

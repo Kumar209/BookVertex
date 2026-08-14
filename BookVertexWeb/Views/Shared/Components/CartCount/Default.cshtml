@@ -1,0 +1,29 @@
+﻿@model int
+
+<a asp-area="Customer"
+   asp-controller="Cart"
+   asp-action="Index"
+   aria-label="Shopping cart"
+   class="group flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-base-300 bg-base-100 text-base-content transition hover:border-primary/40 hover:bg-primary/5 sm:h-10 sm:w-auto sm:gap-2 sm:px-1.5 sm:pr-3">
+
+    <div class="relative flex h-8 w-8 items-center justify-center rounded-full text-primary transition group-hover:scale-105 sm:bg-base-200">
+
+        <i class="bi bi-cart2 text-[15px] sm:text-base"></i>
+
+        <span class="absolute -right-1 -top-1 flex h-4 min-w-4 items-center justify-center rounded-full border-2 border-base-100 bg-primary px-1 text-[8px] font-extrabold leading-none text-primary-content">
+            @Model
+        </span>
+
+    </div>
+
+    <div class="hidden flex-col leading-none sm:flex">
+        <span class="text-[9px] font-bold uppercase tracking-wider text-base-content/45">
+            Cart
+        </span>
+
+        <span class="mt-1 whitespace-nowrap text-xs font-bold text-base-content">
+            @Model @(Model == 1 ? "Item" : "Items")
+        </span>
+    </div>
+
+</a>

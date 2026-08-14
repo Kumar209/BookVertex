@@ -1,0 +1,508 @@
+﻿@using BookVertex.Utility
+<!DOCTYPE html>
+<html lang="en" data-theme="bookvertex">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>BookVertex</title>
+
+    <script type="importmap"></script>
+
+    <link rel="stylesheet"
+          href="~/css/app.min.css"
+          asp-append-version="true" />
+
+    <link rel="stylesheet"
+          href="~/css/site.css"
+          asp-append-version="true" />
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+          rel="stylesheet" />
+
+    <link rel="stylesheet"
+          href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css"
+          asp-append-version="true" />
+
+    <link rel="stylesheet"
+          href="~/BookVertexWeb.styles.css"
+          asp-append-version="true" />
+
+@*     <link rel="stylesheet"
+          href="//cdn.datatables.net/2.3.7/css/dataTables.dataTables.min.css"
+          asp-append-version="true" /> *@
+
+    <script>
+        (function () {
+            const theme = localStorage.getItem("bookvertex-theme");
+
+            if (theme) {
+                document.documentElement.setAttribute("data-theme", theme);
+            }
+        })();
+    </script>
+</head>
+
+<body class="min-h-screen flex flex-col bg-base-200 text-base-content">
+
+    <header class="sticky top-0 z-50">
+        <nav class="bv-navbar navbar bg-base-100/95 backdrop-blur-md border-b border-base-300 shadow-sm">
+
+            <div class="bv-navbar-inner w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+                <!-- Brand -->
+                <div class="navbar-start">
+
+                    <a asp-area="Customer"
+                       asp-controller="Home"
+                       asp-action="Index"
+                       class="bv-brand flex items-center gap-2.5">
+
+                        <div class="bv-brand-icon">
+                            <img src="/images/book.png"
+                                 alt="BookVertex"
+                                 class="w-7 h-7 object-contain" />
+                        </div>
+
+                        <div class="bv-brand-text">
+
+                            <div class="bv-brand-name">
+                                Book<span>Vertex</span>
+                            </div>
+
+                            <div class="bv-brand-tagline">
+                                Your Gateway to Endless Stories
+                            </div>
+
+                        </div>
+
+                    </a>
+
+                </div>
+
+                <!-- Desktop navigation -->
+                <div class="navbar-center hidden md:flex">
+
+                    <ul class="flex items-center gap-1">
+
+                        <li>
+                            <a asp-area="Customer"
+                               asp-controller="Home"
+                               asp-action="Index"
+                               class="bv-nav-link">
+
+                                <i class="bi bi-house-door"></i>
+
+                                <span>Home</span>
+
+                            </a>
+                        </li>
+
+                        @* <li>
+                            <a asp-area="Customer"
+                               asp-controller="Cart"
+                               asp-action="Index"
+                               class="bv-nav-link">
+
+                                <i class="bi bi-house-door"></i>
+
+                                <span>Cart</span>
+
+                            </a>
+                        </li> *@
+
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li>
+                                <a asp-area="Admin"
+                                   asp-controller="Order"
+                                   asp-action="Index"
+                                   class="bv-nav-link">
+
+                                    <i class="bi bi-box-seam me-1"></i>
+                                    My Orders
+
+                                </a>
+                            </li>
+                        }
+
+                        @if (User.IsInRole(SD.RoleAdmin) || User.IsInRole(SD.RoleEmployee))
+                        {
+                            <li>
+                                <a asp-area="Admin"
+                                   asp-controller="Dashboard"
+                                   asp-action="Index"
+                                   class="bv-nav-link">
+
+                                    <i class="bi bi-speedometer2 me-1"></i>
+                                    Admin Portal
+
+                                </a>
+                            </li>
+                        }
+                       
+
+                    </ul>
+
+                </div>
+
+                <!-- Right navigation -->
+                <div class="navbar-end gap-1">
+                    @await Component.InvokeAsync("CartCount")
+
+
+                    <!-- Login / Register -->
+                    <partial name="_LoginPartial" />
+
+
+
+                    <!-- Theme picker -->
+                    <details class="dropdown dropdown-end">
+
+                        <summary class="bv-theme-trigger"
+                                 aria-label="Choose theme"
+                                 title="Choose theme">
+
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                 fill="none"
+                                 viewBox="0 0 24 24"
+                                 stroke-width="1.8"
+                                 stroke="currentColor"
+                                 class="bv-theme-icon">
+
+                                <path stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                      d="M9.813 15.904L9 18l-.813-2.096A4.5 4.5 0 006.096 13.5L4 12l2.096-.813A4.5 4.5 0 008.187 9L9 6.904 9.813 9a4.5 4.5 0 002.091 2.187L14 12l-2.096 1.5a4.5 4.5 0 00-2.091 2.404zM18.259 8.715L18 10l-.259-1.285A2.25 2.25 0 0016.285 7.26L15 7l1.285-.259A2.25 2.25 0 0017.741 5.285L18 4l.259 1.285A2.25 2.25 0 0019.715 6.74L21 7l-1.285.259A2.25 2.25 0 0018.259 8.715zM18 16l-.387.968A3.75 3.75 0 0115.968 18.613L15 19l.968.387A3.75 3.75 0 0117.613 21L18 22l.387-.968A3.75 3.75 0 0119.032 19.387L20 19l-.968-.387A3.75 3.75 0 0118.387 17.968L18 16z" />
+
+                            </svg>
+
+                        </summary>
+
+                        <div class="dropdown-content bv-theme-menu">
+
+                            <div class="bv-theme-header">
+                                <span>Choose Theme</span>
+                            </div>
+
+                            <div class="bv-theme-scroll">
+
+                                <div class="bv-theme-grid">
+
+                                    <button type="button" class="bv-theme-option" data-theme="light">
+                                        light
+                                    </button>
+
+                                    <button type="button" class="bv-theme-option" data-theme="dark">
+                                        dark
+                                    </button>
+
+                                    <button type="button" class="bv-theme-option" data-theme="cupcake">
+                                        cupcake
+                                    </button>
+
+                                    <button type="button" class="bv-theme-option" data-theme="bumblebee">
+                                        bumblebee
+                                    </button>
+
+                                    <button type="button" class="bv-theme-option" data-theme="emerald">
+                                        emerald
+                                    </button>
+
+                                    <button type="button" class="bv-theme-option" data-theme="corporate">
+                                        corporate
+                                    </button>
+
+                                    <button type="button" class="bv-theme-option" data-theme="synthwave">
+                                        synthwave
+                                    </button>
+
+                                    <button type="button" class="bv-theme-option" data-theme="retro">
+                                        retro
+                                    </button>
+
+                                    <button type="button" class="bv-theme-option" data-theme="cyberpunk">
+                                        cyberpunk
+                                    </button>
+
+                                    <button type="button" class="bv-theme-option" data-theme="valentine">
+                                        valentine
+                                    </button>
+
+                                    <button type="button" class="bv-theme-option" data-theme="halloween">
+                                        halloween
+                                    </button>
+
+                                    <button type="button" class="bv-theme-option" data-theme="garden">
+                                        garden
+                                    </button>
+
+                                    <button type="button" class="bv-theme-option" data-theme="forest">
+                                        forest
+                                    </button>
+
+                                    <button type="button" class="bv-theme-option" data-theme="aqua">
+                                        aqua
+                                    </button>
+
+                                    <button type="button" class="bv-theme-option" data-theme="lofi">
+                                        lofi
+                                    </button>
+
+                                    <button type="button" class="bv-theme-option" data-theme="pastel">
+                                        pastel
+                                    </button>
+
+                                    <button type="button" class="bv-theme-option" data-theme="fantasy">
+                                        fantasy
+                                    </button>
+
+                                    <button type="button" class="bv-theme-option" data-theme="wireframe">
+                                        wireframe
+                                    </button>
+
+                                    <button type="button" class="bv-theme-option" data-theme="black">
+                                        black
+                                    </button>
+
+                                    <button type="button" class="bv-theme-option" data-theme="luxury">
+                                        luxury
+                                    </button>
+
+                                    <button type="button" class="bv-theme-option" data-theme="dracula">
+                                        dracula
+                                    </button>
+
+                                    <button type="button" class="bv-theme-option" data-theme="cmyk">
+                                        cmyk
+                                    </button>
+
+                                    <button type="button" class="bv-theme-option" data-theme="autumn">
+                                        autumn
+                                    </button>
+
+                                    <button type="button" class="bv-theme-option" data-theme="business">
+                                        business
+                                    </button>
+
+                                    <button type="button" class="bv-theme-option" data-theme="acid">
+                                        acid
+                                    </button>
+
+                                    <button type="button" class="bv-theme-option" data-theme="lemonade">
+                                        lemonade
+                                    </button>
+
+                                    <button type="button" class="bv-theme-option" data-theme="night">
+                                        night
+                                    </button>
+
+                                    <button type="button" class="bv-theme-option" data-theme="coffee">
+                                        coffee
+                                    </button>
+
+                                    <button type="button" class="bv-theme-option" data-theme="winter">
+                                        winter
+                                    </button>
+
+                                    <button type="button" class="bv-theme-option" data-theme="dim">
+                                        dim
+                                    </button>
+
+                                    <button type="button" class="bv-theme-option" data-theme="nord">
+                                        nord
+                                    </button>
+
+                                    <button type="button" class="bv-theme-option" data-theme="sunset">
+                                        sunset
+                                    </button>
+
+                                    <button type="button" class="bv-theme-option" data-theme="caramellatte">
+                                        caramellatte
+                                    </button>
+
+                                    <button type="button" class="bv-theme-option" data-theme="abyss">
+                                        abyss
+                                    </button>
+
+                                    <button type="button" class="bv-theme-option" data-theme="silk">
+                                        silk
+                                    </button>
+
+                                    <button type="button" class="bv-theme-option" data-theme="bookvertex">
+                                        BookVertex
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </details>
+
+                    <!-- Mobile menu -->
+                    <div class="dropdown dropdown-end md:hidden">
+
+                        <button tabindex="0"
+                                type="button"
+                                class="bv-mobile-menu-button"
+                                aria-label="Open navigation menu">
+
+                            <i class="bi bi-list"></i>
+
+                        </button>
+
+                        <ul tabindex="0"
+                            class="menu dropdown-content mt-3 z-[100] w-64 rounded-2xl bg-base-100 p-3 shadow-xl border border-base-300">
+
+                            <li>
+                                <a asp-area="Customer"
+                                   asp-controller="Home"
+                                   asp-action="Index">
+
+                                    <i class="bi bi-house-door"></i>
+                                    Home
+
+                                </a>
+                            </li>
+
+
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <li>
+                                    <a asp-area="Admin"
+                                       asp-controller="Order"
+                                       asp-action="Index">
+
+                                        <i class="bi bi-box-seam me-1"></i>
+                                        My Orders
+
+                                    </a>
+                                </li>
+                            }
+
+                            @if (User.IsInRole(SD.RoleAdmin) || User.IsInRole(SD.RoleEmployee))
+                            {
+                                <li>
+                                    <a asp-area="Admin"
+                                       asp-controller="Dashboard"
+                                       asp-action="Index">
+
+                                        <i class="bi bi-speedometer2 me-1"></i>
+                                        Admin Portal
+
+                                    </a>
+                                </li>
+                            }
+
+                            
+                            <div class="my-2 h-px bg-base-300"></div>
+
+                            <partial name="_MobileLoginPartial" />
+
+                        </ul>
+
+                    </div>
+
+                    
+                   
+
+                </div>
+
+            </div>
+
+        </nav>
+    </header>
+
+    <main role="main" class="flex-1">
+        <partial name="_Notification" />
+
+        @RenderBody()
+    </main>
+
+    <!-- Footer -->
+    <footer class="bv-footer mt-auto bg-neutral text-neutral-content">
+
+        <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-7 sm:py-8">
+
+            <div class="bv-footer-grid">
+
+                <div class="bv-footer-brand">
+
+                    <div class="bv-footer-brand-icon">
+                        <i class="bi bi-book"></i>
+                    </div>
+
+                    <div>
+                        <p class="bv-footer-title">
+                            BookVertex
+                        </p>
+
+                        <p class="bv-footer-tagline">
+                            Your Gateway to Endless Stories
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="bv-footer-copy">
+
+                    <p>
+                        &copy; @DateTime.Now.Year BookVertex.
+                        All rights reserved.
+                    </p>
+
+                    <p>
+                        Made with
+                        <i class="bi bi-heart-fill"></i>
+                        by Prashant
+                    </p>
+
+                </div>
+
+                <div class="bv-footer-socials">
+
+                    <a href="#"
+                       class="bv-footer-social"
+                       aria-label="Twitter">
+
+                        <i class="bi bi-twitter-x"></i>
+
+                    </a>
+
+                    <a href="#"
+                       class="bv-footer-social"
+                       aria-label="Facebook">
+
+                        <i class="bi bi-facebook"></i>
+
+                    </a>
+
+                    <a href="#"
+                       class="bv-footer-social"
+                       aria-label="Instagram">
+
+                        <i class="bi bi-instagram"></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="//cdn.datatables.net/2.3.7/js/dataTables.min.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+
+</html>

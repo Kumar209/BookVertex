@@ -1,0 +1,367 @@
+﻿#tblData_wrapper .dt-search {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 24px;
+}
+
+    #tblData_wrapper .dt-search label {
+        display: none;
+    }
+
+    #tblData_wrapper .dt-search input {
+        width: 430px;
+        height: 44px;
+        margin: 0 !important;
+        padding: 0 16px;
+        border: 1px solid color-mix(in srgb, var(--color-base-content) 18%, transparent);
+        border-radius: 12px;
+        background: var(--color-base-100);
+        color: var(--color-base-content);
+        font-size: 0.9rem;
+        outline: none;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+        #tblData_wrapper .dt-search input::placeholder {
+            color: color-mix(in srgb, var(--color-base-content) 50%, transparent);
+        }
+
+        #tblData_wrapper .dt-search input:focus {
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 12%, transparent);
+        }
+
+#tblData {
+    width: 100% !important;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+    #tblData thead th {
+        padding: 0 14px 14px;
+        border-bottom: 1px solid color-mix(in srgb, var(--color-base-content) 18%, transparent);
+        color: var(--color-base-content);
+        font-size: 0.85rem;
+        font-weight: 700;
+        text-align: left;
+        white-space: nowrap;
+    }
+
+        #tblData thead th:last-child,
+        #tblData tbody td:last-child {
+            text-align: right;
+        }
+
+    #tblData tbody td {
+        padding: 14px;
+        border-bottom: 1px solid color-mix(in srgb, var(--color-base-content) 9%, transparent);
+        color: var(--color-base-content);
+        font-size: 0.9rem;
+        line-height: 1.4;
+        vertical-align: middle;
+    }
+
+    #tblData tbody tr {
+        transition: background-color 0.15s ease;
+    }
+
+        #tblData tbody tr:hover {
+            background: color-mix(in srgb, var(--color-base-content) 3%, transparent);
+        }
+
+        #tblData tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+    #tblData th:nth-child(1),
+    #tblData td:nth-child(1) {
+        width: 21%;
+    }
+
+    #tblData th:nth-child(2),
+    #tblData td:nth-child(2) {
+        width: 24%;
+    }
+
+    #tblData th:nth-child(3),
+    #tblData td:nth-child(3) {
+        width: 17%;
+    }
+
+    #tblData th:nth-child(4),
+    #tblData td:nth-child(4) {
+        width: 13%;
+    }
+
+    #tblData th:nth-child(5),
+    #tblData td:nth-child(5) {
+        width: 25%;
+    }
+
+.user-person {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.user-avatar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    background: color-mix(in srgb, var(--color-primary) 10%, transparent);
+    color: var(--color-primary);
+}
+
+.user-name {
+    font-weight: 650;
+    color: var(--color-base-content);
+    white-space: nowrap;
+}
+
+.user-email,
+.user-phone {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    color: color-mix(in srgb, var(--color-base-content) 65%, transparent);
+    white-space: nowrap;
+}
+
+    .user-email i,
+    .user-phone i {
+        color: var(--color-primary);
+        font-size: 0.8rem;
+    }
+
+.user-muted {
+    color: color-mix(in srgb, var(--color-base-content) 35%, transparent);
+}
+
+.user-role {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 10px;
+    border-radius: 999px;
+    font-size: 0.76rem;
+    font-weight: 650;
+    white-space: nowrap;
+}
+
+.user-role-admin {
+    background: color-mix(in srgb, var(--color-error) 10%, transparent);
+    color: var(--color-error);
+}
+
+.user-role-employee {
+    background: color-mix(in srgb, var(--color-warning) 12%, transparent);
+    color: color-mix(in srgb, var(--color-warning) 75%, black);
+}
+
+.user-role-customer {
+    background: color-mix(in srgb, var(--color-primary) 10%, transparent);
+    color: var(--color-primary);
+}
+
+.user-role-default {
+    background: color-mix(in srgb, var(--color-base-content) 8%, transparent);
+    color: color-mix(in srgb, var(--color-base-content) 65%, transparent);
+}
+
+.user-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 7px;
+}
+
+.user-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 36px;
+    min-height: 36px;
+    padding: 0 11px;
+    border-radius: 9px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+#tblData_wrapper .users-footer {
+    position: relative;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 52px;
+    margin-top: 20px;
+}
+
+    #tblData_wrapper .users-footer .dt-info {
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        margin: 0;
+        padding: 0;
+        color: color-mix(in srgb, var(--color-base-content) 65%, transparent);
+        font-size: 0.85rem;
+        line-height: 1;
+        white-space: nowrap;
+    }
+
+    #tblData_wrapper .users-footer .dt-paging {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+    }
+
+    #tblData_wrapper .users-footer .dt-paging-button {
+        display: inline-flex !important;
+        align-items: center;
+        justify-content: center;
+        min-width: 38px;
+        height: 38px;
+        margin: 0 2px !important;
+        padding: 0 10px !important;
+        border: 1px solid color-mix(in srgb, var(--color-base-content) 10%, transparent) !important;
+        border-radius: 10px !important;
+        background: transparent !important;
+        color: var(--color-base-content) !important;
+        transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    }
+
+        #tblData_wrapper .users-footer .dt-paging-button:hover {
+            border-color: var(--color-primary) !important;
+            background: color-mix(in srgb, var(--color-primary) 8%, transparent) !important;
+            color: var(--color-primary) !important;
+        }
+
+        #tblData_wrapper .users-footer .dt-paging-button.current {
+            border-color: var(--color-primary) !important;
+            background: var(--color-primary) !important;
+            color: var(--color-primary-content) !important;
+        }
+
+        #tblData_wrapper .users-footer .dt-paging-button.disabled {
+            opacity: 0.35;
+            cursor: not-allowed;
+        }
+
+    #tblData_wrapper .users-footer .dt-length {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin: 0;
+        padding: 0;
+        line-height: 1;
+        white-space: nowrap;
+    }
+
+        #tblData_wrapper .users-footer .dt-length select {
+            min-width: 78px;
+            height: 40px;
+            padding: 0 28px 0 12px;
+            border: 1px solid color-mix(in srgb, var(--color-base-content) 18%, transparent);
+            border-radius: 10px;
+            background: var(--color-base-100);
+            color: var(--color-base-content);
+            outline: none;
+            cursor: pointer;
+        }
+
+            #tblData_wrapper .users-footer .dt-length select:focus {
+                border-color: var(--color-primary);
+                box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 10%, transparent);
+            }
+
+#tblData_wrapper .dt-processing {
+    border-radius: 10px;
+    background: var(--color-base-100);
+    color: var(--color-base-content);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+@media (max-width: 768px) {
+
+    #tblData_wrapper .dt-search {
+        justify-content: stretch;
+    }
+
+        #tblData_wrapper .dt-search input {
+            width: 100%;
+        }
+
+    #tblData_wrapper .users-footer {
+        display: flex !important;
+        flex-direction: column;
+        justify-content: center;
+        gap: 14px;
+        min-height: auto;
+        padding-top: 8px;
+    }
+
+        #tblData_wrapper .users-footer .dt-info {
+            position: static;
+            transform: none;
+            order: 1;
+            text-align: center;
+        }
+
+        #tblData_wrapper .users-footer .dt-paging {
+            order: 2;
+        }
+
+        #tblData_wrapper .users-footer .dt-length {
+            position: static;
+            transform: none;
+            order: 3;
+            justify-content: center;
+        }
+
+    #tblData tbody td {
+        padding: 12px 10px;
+    }
+
+    #tblData thead th {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .user-action {
+        padding: 0 9px;
+    }
+}
+
+@media (max-width: 600px) {
+
+    #tblData {
+        min-width: 850px;
+    }
+
+    .user-actions {
+        justify-content: flex-start;
+    }
+}
+
+.user-role-display {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 10px;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--color-primary) 10%, transparent);
+    color: var(--color-primary);
+    font-size: 0.75rem;
+    font-weight: 650;
+}

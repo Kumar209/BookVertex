@@ -1,0 +1,66 @@
+﻿<div class="space-y-1">
+    <p class="px-3 pb-2 pt-1 text-[10px] font-bold uppercase tracking-[0.18em] text-base-content/40">
+        Overview
+    </p>
+
+    <!-- TODO: Add navigation links with active class logic -->
+    <a asp-area="Admin"
+       asp-controller="Dashboard"
+       asp-action="Index"
+       class="group flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold text-base-content/65 transition-all duration-200 hover:bg-base-200 hover:text-base-content">
+        <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary transition-transform duration-200 group-hover:scale-105">
+            <i class="bi bi-grid-1x2"></i>
+        </span>
+        <span>Dashboard</span>
+    </a>
+
+    <p class="px-3 pb-2 pt-5 text-[10px] font-bold uppercase tracking-[0.18em] text-base-content/40">
+        Commerce
+    </p>
+
+    <a asp-area="Admin"
+       asp-controller="Order"
+       asp-action="Index"
+       asp-route-status="approved"
+       class="group flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold text-base-content/65 transition-all duration-200 hover:bg-base-200 hover:text-base-content">
+        <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-base-200 text-base-content/60 transition-all duration-200 group-hover:bg-primary/10 group-hover:text-primary">
+            <i class="bi bi-truck"></i>
+        </span>
+        <span>Orders</span>
+    </a>
+
+    <a asp-area="Admin"
+       asp-controller="Product"
+       asp-action="Index"
+       class="group flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold text-base-content/65 transition-all duration-200 hover:bg-base-200 hover:text-base-content">
+        <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-base-200 text-base-content/60 transition-all duration-200 group-hover:bg-primary/10 group-hover:text-primary">
+            <i class="bi bi-book"></i>
+        </span>
+        <span>Products</span>
+    </a>
+
+    <a asp-area="Admin"
+       asp-controller="Category"
+       asp-action="Index"
+       class="group flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold text-base-content/65 transition-all duration-200 hover:bg-base-200 hover:text-base-content">
+        <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-base-200 text-base-content/60 transition-all duration-200 group-hover:bg-primary/10 group-hover:text-primary">
+            <i class="bi bi-tags"></i>
+        </span>
+        <span>Categories</span>
+    </a>
+
+    <!-- TODO: Show Management section only for Admin role -->
+    <p class="px-3 pb-2 pt-5 text-[10px] font-bold uppercase tracking-[0.18em] text-base-content/40">
+        Management
+    </p>
+
+    <a asp-area="Admin"
+       asp-controller="User"
+       asp-action="Index"
+       class="group flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold text-base-content/65 transition-all duration-200 hover:bg-base-200 hover:text-base-content">
+        <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-base-200 text-base-content/60 transition-all duration-200 group-hover:bg-primary/10 group-hover:text-primary">
+            <i class="bi bi-people"></i>
+        </span>
+        <span>Users</span>
+    </a>
+</div>
